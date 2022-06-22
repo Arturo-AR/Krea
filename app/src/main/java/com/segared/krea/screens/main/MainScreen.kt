@@ -35,8 +35,8 @@ fun MainScreen() {
                     fontFamily = FontFamily.Cursive,
                     fontWeight = FontWeight.Bold
                 )
-            } //Box with the krea logo
-            Box(
+            }
+            Box(//Box with the krea logo
                 modifier = Modifier.weight(1f),
                 contentAlignment = Alignment.Center
             ) {
@@ -46,10 +46,20 @@ fun MainScreen() {
                 modifier = Modifier.weight(1f),
                 verticalArrangement = Arrangement.Center
             ) {
-                ButtonFilled(text = stringResource(R.string.log_in)) {
+                ButtonFilled(
+                    text = stringResource(R.string.log_in),
+                    startWeight = 1f,
+                    buttonWeight = 3f,
+                    endWeight = 1f
+                ) {
                     //Todo Add logic to login
                 }
-                ButtonTransparent(text = stringResource(R.string.sign_up)) {
+                ButtonTransparent(
+                    text = stringResource(R.string.sign_up),
+                    startWeight = 1f,
+                    buttonWeight = 3f,
+                    endWeight = 1f
+                ) {
                     //Todo Add logic to Signup
                 }
             }
