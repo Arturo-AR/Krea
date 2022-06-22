@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Krea</string>
+    <string name="krea_logo">Logo de Krea</string>
+    <string name="welcome">Bienvenido</string>
+    <string name="log_in">Iniciar Sesión</string>
+    <string name="sign_up">Registrarse</string>
+
+
+<!--<string name="app_name">Krea</string>
+    <string name="krea_logo">Krea logo</string>
+    <string name="welcome">Welcome</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_up">Sign Up</string> -->
 </resources>
