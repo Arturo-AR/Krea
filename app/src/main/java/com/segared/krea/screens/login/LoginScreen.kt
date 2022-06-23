@@ -8,15 +8,16 @@ import androidx.compose.ui.Modifier
 import com.segared.krea.R
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.segared.krea.components.ButtonFilled
 import com.segared.krea.components.ButtonTransparent
 import com.segared.krea.components.ImageBackground
 import com.segared.krea.components.TextInputs
+import com.segared.krea.navigation.KreaScreens
 import com.segared.krea.ui.theme.TransparentGray
 
-@Preview
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
     Box {
         ImageBackground(imageId = R.drawable.tower_day_2)
         Column(
@@ -52,7 +53,7 @@ fun LoginScreen() {
                     endWeight = 1f,
                     background = TransparentGray
                 ) {
-                    Log.d("Iniciar", "Iniciar sesion")
+                    navController.navigate(KreaScreens.Main.route)
                 }
                 Spacer(modifier = Modifier.height(60.dp))
             }

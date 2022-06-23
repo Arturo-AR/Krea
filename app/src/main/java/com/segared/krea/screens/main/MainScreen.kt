@@ -11,15 +11,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.segared.krea.R
 import com.segared.krea.components.ButtonFilled
 import com.segared.krea.components.ButtonTransparent
 import com.segared.krea.components.ImageBackground
 import com.segared.krea.components.KreaLogo
+import com.segared.krea.navigation.KreaScreens
 
-@Preview
 @Composable
-fun MainScreen() {
+fun MainScreen(navController: NavController) {
     Box {
         ImageBackground(imageId = R.drawable.tower_day_2)
         Column( //Main column
@@ -52,6 +53,7 @@ fun MainScreen() {
                     buttonWeight = 3f,
                     endWeight = 1f
                 ) {
+                    navController.navigate(KreaScreens.Login.route)
                     //Todo Add logic to login
                 }
                 ButtonTransparent(
