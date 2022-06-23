@@ -1,7 +1,6 @@
 package com.segared.krea.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -11,7 +10,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.segared.krea.R
@@ -48,7 +46,7 @@ fun ButtonFilled(
                 backgroundColor = background
             )
         ) {
-            Text(modifier = Modifier.padding(4.dp), text = text)
+            Text(modifier = Modifier.padding(4.dp), text = text, maxLines = 1)
         }
         Box(
             modifier = Modifier
@@ -89,7 +87,7 @@ fun ButtonTransparent(
                 backgroundColor = background
             )
         ) {
-            Text(modifier = Modifier.padding(4.dp), text = text)
+            Text(modifier = Modifier.padding(4.dp), text = text, maxLines = 1)
         }
         Box(
             modifier = Modifier
@@ -132,8 +130,7 @@ fun ImageBackground(
 @Composable
 fun TextInputs(
     modifier: Modifier = Modifier,
-    label: String = "Numero de casa",
-    textAlignment: TextAlign = TextAlign.Start
+    label: String = "Numero de casa"
 ) {
     var text by remember { mutableStateOf("") }
     Column(
@@ -148,12 +145,12 @@ fun TextInputs(
             label = { Text(text = label) },
             onValueChange = { text = it },
             colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = TransparentGray,
-                textColor = Color.White,
-                focusedIndicatorColor = Color.Black,
+                backgroundColor = Color.White,
+                textColor = Color.Black,
+                focusedIndicatorColor = Color.Red,
                 focusedLabelColor = Color.Black,
-                unfocusedIndicatorColor = Color.White,
-                unfocusedLabelColor = Color.White
+                unfocusedIndicatorColor = Color.Black,
+                unfocusedLabelColor = Color.Black
             )
         )
     }
