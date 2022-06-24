@@ -10,4 +10,12 @@ sealed class KreaScreens(
     object Login : KreaScreens(
         route = "login"
     )
+
+    object Dashboard : KreaScreens(
+        route = "dashboard"
+    )
+
+    object Signup : KreaScreens(
+        route = "signup"
+    )
 }

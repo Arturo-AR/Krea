@@ -8,7 +8,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -49,6 +48,8 @@ fun MainScreen(navController: NavController) {
             ) {
                 ButtonFilled(
                     text = stringResource(R.string.log_in),
+                    loading = false,
+                    validInputs = true,
                     startWeight = 1f,
                     buttonWeight = 3f,
                     endWeight = 1f
@@ -62,6 +63,7 @@ fun MainScreen(navController: NavController) {
                     buttonWeight = 3f,
                     endWeight = 1f
                 ) {
+                    navController.navigate(KreaScreens.Signup.route)
                     //Todo Add logic to Signup
                 }
             }
