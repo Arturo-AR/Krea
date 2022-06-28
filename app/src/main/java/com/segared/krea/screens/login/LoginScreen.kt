@@ -14,6 +14,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import com.segared.krea.R
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.segared.krea.components.*
 import com.segared.krea.navigation.KreaScreens
@@ -21,7 +22,10 @@ import com.segared.krea.ui.theme.TransparentGray
 
 @ExperimentalComposeUiApi
 @Composable
-fun LoginScreen(navController: NavController) {
+fun LoginScreen(
+    navController: NavController,
+    viewModel: LoginScreenViewModel = hiltViewModel()
+) {
     val email = rememberSaveable { mutableStateOf("") }
     val password = rememberSaveable { mutableStateOf("") }
     val passwordVisibility = rememberSaveable { mutableStateOf(false) }
@@ -69,7 +73,9 @@ fun LoginScreen(navController: NavController) {
                     buttonWeight = 1.5f,
                     endWeight = 1f
                 ) {
-                    navController.navigate(KreaScreens.Dashboard.route)
+                    viewModel.login(email.value.trim(), password.value.trim()) {
+                        navController.navigate(KreaScreens.Dashboard.route)
+                    }
                 }
                 ButtonTransparent(
                     background = TransparentGray,
