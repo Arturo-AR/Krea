@@ -1,5 +1,6 @@
 package com.segared.krea.screens.login
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.runtime.Composable
@@ -11,6 +12,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import com.segared.krea.R
 import androidx.compose.ui.unit.dp
@@ -26,6 +28,7 @@ fun LoginScreen(
     navController: NavController,
     viewModel: LoginScreenViewModel = hiltViewModel()
 ) {
+    val context = LocalContext.current
     val email = rememberSaveable { mutableStateOf("") }
     val password = rememberSaveable { mutableStateOf("") }
     val passwordVisibility = rememberSaveable { mutableStateOf(false) }
@@ -73,9 +76,16 @@ fun LoginScreen(
                     buttonWeight = 1.5f,
                     endWeight = 1f
                 ) {
-                    viewModel.login(email.value.trim(), password.value.trim()) {
-                        navController.navigate(KreaScreens.Dashboard.route)
-                    }
+                    viewModel.login(
+                        email = email.value.trim(),
+                        password = password.value.trim(),
+                        onError = {
+                            Toast.makeText(
+                                context, "Credenciales no validas", Toast.LENGTH_LONG).show()
+                        },
+                        onSuccess = {
+                            navController.navigate(KreaScreens.Dashboard.route)
+                        })
                 }
                 ButtonTransparent(
                     background = TransparentGray,

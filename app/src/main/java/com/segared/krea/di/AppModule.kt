@@ -2,6 +2,7 @@ package com.segared.krea.di
 
 import com.segared.krea.network.KreaApi
 import com.segared.krea.repository.KreaRepository
+import com.segared.krea.utils.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +19,7 @@ object AppModule {
     @Provides
     fun providesKreaApi(): KreaApi {
         return Retrofit.Builder()
-            .baseUrl("https://github.com/")
+            .baseUrl(Constants.KREA_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(KreaApi::class.java)

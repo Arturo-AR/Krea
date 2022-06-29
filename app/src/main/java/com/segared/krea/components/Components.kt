@@ -38,7 +38,7 @@ fun EmailInput(
         valueState = emailState,
         labelId = labelId,
         enable = enable,
-        keyboardType = KeyboardType.Number,
+        keyboardType = KeyboardType.Email,
         imeAction = imeAction,
         onAction = onAction
     )
@@ -51,7 +51,7 @@ fun InputField(
     labelId: String,
     enable: Boolean,
     isSingleLine: Boolean = true,
-    keyboardType: KeyboardType = KeyboardType.Number,
+    keyboardType: KeyboardType = KeyboardType.Email,
     imeAction: ImeAction = ImeAction.Next,
     onAction: KeyboardActions = KeyboardActions.Default
 ) {

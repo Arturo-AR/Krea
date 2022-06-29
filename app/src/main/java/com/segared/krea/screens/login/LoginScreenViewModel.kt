@@ -12,13 +12,13 @@ import javax.inject.Inject
 class LoginScreenViewModel @Inject constructor(private val repository: KreaRepository) :
     ViewModel() {
 
-    fun login(email: String, password: String, home: () -> Unit) {
+    fun login(email: String, password: String, onSuccess: () -> Unit, onError:()->Unit) {
         viewModelScope.launch {
             try {
-                if (repository.login(email, password) == "") {
-                    home()
+                if (repository.login(email, password).body()?.responseCode == "exito") {
+                    onSuccess()
                 } else {
-                    Log.d("Error", "An error in login")
+                    onError()
                 }
             } catch (ex: Exception) {
                 Log.d("Error Login", "Error at login: ${ex.message}")
