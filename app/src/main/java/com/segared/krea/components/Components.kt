@@ -28,7 +28,7 @@ import com.segared.krea.R
 fun EmailInput(
     modifier: Modifier = Modifier,
     emailState: MutableState<String>,
-    labelId: String = "Número de casa",
+    labelId: String = stringResource(id = R.string.email),
     enable: Boolean = true,
     imeAction: ImeAction = ImeAction.Next,
     onAction: KeyboardActions = KeyboardActions.Default

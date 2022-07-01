@@ -2,8 +2,12 @@
     <string name="app_name">Krea</string>
     <string name="krea_logo">Logo de Krea</string>
     <string name="welcome">Bienvenido</string>
+    <string name="cancel">Cancelar</string>
     <string name="log_in">Iniciar Sesión</string>
+    <string name="password">Contraseña</string>
+    <string name="email">Correo</string>
     <string name="sign_up">Registrarse</string>
+    <string name="login_fail">Credenciales no válidas</string>
 
 
 <!--<string name="app_name">Krea</string>

@@ -14,6 +14,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import com.segared.krea.R
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -54,7 +55,7 @@ fun LoginScreen(
                 PasswordInput(
                     modifier = Modifier.focusRequester(passwordFocusRequest),
                     passwordState = password,
-                    labelId = "Contraseña",
+                    labelId = stringResource(id = R.string.password),
                     enable = !loading,
                     passwordVisibility = passwordVisibility,
                     onAction = KeyboardActions {
@@ -69,7 +70,7 @@ fun LoginScreen(
                 verticalArrangement = Arrangement.Bottom
             ) {
                 ButtonFilled(
-                    text = "Iniciar Sesíon",
+                    text = stringResource(id = R.string.log_in),
                     loading = loading,
                     validInputs = valid,
                     startWeight = 1f,
@@ -81,7 +82,7 @@ fun LoginScreen(
                         password = password.value.trim(),
                         onError = {
                             Toast.makeText(
-                                context, "Credenciales no validas", Toast.LENGTH_LONG).show()
+                                context, context.getString(R.string.login_fail), Toast.LENGTH_LONG).show()
                         },
                         onSuccess = {
                             navController.navigate(KreaScreens.Dashboard.route)
@@ -89,7 +90,7 @@ fun LoginScreen(
                 }
                 ButtonTransparent(
                     background = TransparentGray,
-                    text = "Cancelar",
+                    text = stringResource(id = R.string.cancel),
                     startWeight = 1f,
                     buttonWeight = 1.5f,
                     endWeight = 1f
