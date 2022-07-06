@@ -7,6 +7,6 @@ import javax.inject.Inject
 
 class KreaRepository @Inject constructor(private val api: KreaApi) {
     suspend fun login(email: String, password: String): Response<LoginResponse> {
-        return api.login(email, password)
+        return api.login(0, email, password)
     }
 }

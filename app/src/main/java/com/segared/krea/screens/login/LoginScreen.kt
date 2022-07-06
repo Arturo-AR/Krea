@@ -46,8 +46,9 @@ fun LoginScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.Bottom) {
-                EmailInput(
-                    emailState = email,
+                InputField(
+                    labelId = "Correo",
+                    valueState = email,
                     enable = !loading,
                     onAction = KeyboardActions {
                         passwordFocusRequest.requestFocus()

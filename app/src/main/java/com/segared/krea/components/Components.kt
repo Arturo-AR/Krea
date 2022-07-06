@@ -23,35 +23,16 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.segared.krea.R
-
-@Composable
-fun EmailInput(
-    modifier: Modifier = Modifier,
-    emailState: MutableState<String>,
-    labelId: String = stringResource(id = R.string.email),
-    enable: Boolean = true,
-    imeAction: ImeAction = ImeAction.Next,
-    onAction: KeyboardActions = KeyboardActions.Default
-) {
-    InputField(
-        modifier = modifier,
-        valueState = emailState,
-        labelId = labelId,
-        enable = enable,
-        keyboardType = KeyboardType.Email,
-        imeAction = imeAction,
-        onAction = onAction
-    )
-}
+import com.segared.krea.ui.theme.TransparentGray
 
 @Composable
 fun InputField(
     modifier: Modifier = Modifier,
     valueState: MutableState<String>,
     labelId: String,
-    enable: Boolean,
+    enable: Boolean = true,
     isSingleLine: Boolean = true,
-    keyboardType: KeyboardType = KeyboardType.Email,
+    keyboardType: KeyboardType = KeyboardType.Text,
     imeAction: ImeAction = ImeAction.Next,
     onAction: KeyboardActions = KeyboardActions.Default
 ) {
@@ -247,4 +228,46 @@ fun ImageBackground(
         contentDescription = null,
         contentScale = ContentScale.Crop
     )
+}
+
+@Composable
+fun ShowAlertDialog(
+    title: String,
+    message: String,
+    positiveButtonText: String = "Aceptar",
+    negativeButtonText: String = "Cancelar",
+    openDialog: MutableState<Boolean>,
+    onYesPress: () -> Unit
+) {
+    if (openDialog.value) {
+        AlertDialog(onDismissRequest = { openDialog.value = false },
+            title = { Text(text = title, color = Color.Black) },
+            text = { Text(text = message, color = Color.Black) },
+            backgroundColor = Color.White,
+            buttons = {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(all = 8.dp),
+                    horizontalArrangement = Arrangement.End
+                ) {
+                    TextButton(
+                        onClick = { openDialog.value = false },
+                        colors = ButtonDefaults.textButtonColors(
+                            backgroundColor = TransparentGray
+                        )
+                    ) {
+                        Text(text = negativeButtonText, color = Color.Black)
+                    }
+                    Spacer(modifier = Modifier.width(4.dp))
+                    TextButton(
+                        onClick = { onYesPress.invoke() }, colors = ButtonDefaults.textButtonColors(
+                            backgroundColor = Color.Red
+                        )
+                    ) {
+                        Text(text = positiveButtonText, color = Color.White)
+                    }
+                }
+            })
+    }
 }
