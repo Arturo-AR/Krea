@@ -3,6 +3,15 @@ package com.segared.krea.navigation
 sealed class KreaScreens(
     val route: String
 ) {
+
+    object AccessControl : KreaScreens(
+        route = "accessControl"
+    )
+
+    object Splash : KreaScreens(
+        route = "splash"
+    )
+
     object Main : KreaScreens(
         route = "main"
     )

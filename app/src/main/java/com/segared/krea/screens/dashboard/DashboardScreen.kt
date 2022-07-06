@@ -1,9 +1,8 @@
 package com.segared.krea.screens.dashboard
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Logout
 import androidx.compose.runtime.Composable
@@ -11,8 +10,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.segared.krea.KreaApplication.Companion.prefs
 import com.segared.krea.R
 import com.segared.krea.components.ImageBackground
 import com.segared.krea.components.ShowAlertDialog
@@ -23,12 +24,14 @@ fun DashboardScreen(navController: NavController) {
     val openDialog = remember {
         mutableStateOf(false)
     }
+    BackHandler(onBack = {})
     if (openDialog.value) {
         ShowAlertDialog(
             title = "Alerta !!",
             message = "Estas seguro de cerrar sesion ?",
             openDialog = openDialog
         ) {
+            prefs.deleteId()
             navController.navigate(KreaScreens.Main.route)
         }
     }
@@ -46,8 +49,19 @@ fun DashboardScreen(navController: NavController) {
                     Icon(Icons.Default.Logout, null)
                 }
             }
-            Column {
-
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Button(
+                    onClick = { navController.navigate(KreaScreens.AccessControl.route) },
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = Color.Red
+                    )
+                ) {
+                    Text(text = "Control de acceso", color = Color.White)
+                }
             }
         }
     }

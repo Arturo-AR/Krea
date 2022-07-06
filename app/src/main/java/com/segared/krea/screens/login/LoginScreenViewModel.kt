@@ -3,6 +3,7 @@ package com.segared.krea.screens.login
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.segared.krea.KreaApplication.Companion.prefs
 import com.segared.krea.repository.KreaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -15,7 +16,9 @@ class LoginScreenViewModel @Inject constructor(private val repository: KreaRepos
     fun login(email: String, password: String, onSuccess: () -> Unit, onError: () -> Unit) {
         viewModelScope.launch {
             try {
-                if (repository.login(email, password).body()?.responseCode == "exito") {
+                val response = repository.login(email, password).body()
+                if (response?.responseCode == "exito") {
+                    prefs.saveId(response.responseObject?.userId!!)
                     onSuccess()
                 } else {
                     onError()

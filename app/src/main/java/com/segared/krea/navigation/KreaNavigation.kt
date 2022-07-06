@@ -6,6 +6,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.segared.krea.screens.SplashScreen
+import com.segared.krea.screens.accescontrol.AccessControlScreen
 import com.segared.krea.screens.dashboard.DashboardScreen
 import com.segared.krea.screens.login.LoginScreen
 import com.segared.krea.screens.login.LoginScreenViewModel
@@ -16,7 +18,7 @@ import com.segared.krea.screens.signup.SingUpScreen
 @Composable
 fun KreaNavigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = KreaScreens.Main.route) {
+    NavHost(navController = navController, startDestination = KreaScreens.Splash.route) {
         composable(KreaScreens.Main.route) {
             MainScreen(navController = navController)
         }
@@ -29,6 +31,12 @@ fun KreaNavigation() {
         }
         composable(KreaScreens.Signup.route) {
             SingUpScreen(navController = navController)
+        }
+        composable(KreaScreens.Splash.route) {
+            SplashScreen(navController = navController)
+        }
+        composable(KreaScreens.AccessControl.route) {
+            AccessControlScreen(navController = navController)
         }
     }
 }
