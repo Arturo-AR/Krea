@@ -1,6 +1,7 @@
 package com.segared.krea.network
 
 import com.segared.krea.model.kreapi.response.LoginResponse
+import com.segared.krea.model.kreapi.response.SignUpResponse
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -21,5 +22,6 @@ interface KreaApi {
     @POST("ws.php")
     suspend fun signUp(
         @Query("opc") opc: Int,
-    ): Response<String>
+        @Field("usuario_info") userInfo: String
+    ): Response<SignUpResponse>
 }

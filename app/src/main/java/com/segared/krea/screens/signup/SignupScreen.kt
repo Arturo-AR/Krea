@@ -18,15 +18,20 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.segared.krea.R
 import com.segared.krea.components.*
 import com.segared.krea.navigation.KreaScreens
+import com.segared.krea.screens.login.LoginScreenViewModel
 import com.segared.krea.ui.theme.TransparentGray
 
 @ExperimentalComposeUiApi
 @Composable
-fun SingUpScreen(navController: NavController) {
+fun SingUpScreen(
+    navController: NavController,
+    viewModel: SignupScreenViewModel = hiltViewModel()
+) {
     val context = LocalContext.current
     val name = rememberSaveable { mutableStateOf("") }
     val lastName = rememberSaveable { mutableStateOf("") }
@@ -71,7 +76,8 @@ fun SingUpScreen(navController: NavController) {
                     labelId = stringResource(id = R.string.password),
                     enable = !loading,
                     imeAction = ImeAction.Next,
-                    passwordVisibility = passwordVisibility)
+                    passwordVisibility = passwordVisibility
+                )
                 InputField(
                     labelId = "Nombre",
                     valueState = name,
@@ -124,7 +130,24 @@ fun SingUpScreen(navController: NavController) {
                     buttonWeight = 1f,
                     endWeight = 1f
                 ) {
-                    Toast.makeText(context, "Registrando", Toast.LENGTH_SHORT).show()
+                    val info = viewModel.createInfo(
+                        name.value,
+                        lastName.value,
+                        phone.value,
+                        street.value,
+                        outdoorNumber.value,
+                        email.value,
+                        password.value
+                    )
+                    viewModel.signUp(
+                        info,
+                        onError = {
+                            Toast.makeText(context, "Error al registar", Toast.LENGTH_SHORT).show()
+                        },
+                        onSuccess = {
+                            navController.navigate(KreaScreens.Dashboard.route)
+                        })
+
                 }
                 ButtonTransparent(
                     background = TransparentGray,
