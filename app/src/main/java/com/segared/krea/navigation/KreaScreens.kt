@@ -4,6 +4,10 @@ sealed class KreaScreens(
     val route: String
 ) {
 
+    object AccountsRequest : KreaScreens(
+        route = "accountRequest"
+    )
+
     object AccessControl : KreaScreens(
         route = "accessControl"
     )

@@ -20,7 +20,7 @@ class SignupScreenViewModel @Inject constructor(private val repository: KreaRepo
             try {
                 val response = repository.signUp(userInfo).body()
                 if (response?.responseCode == "exito") {
-                    prefs.saveId(response.responseObject?.userId!!)
+                    //prefs.saveId(response.responseObject?.userId!!)
                     onSuccess()
                 } else {
                     onError()

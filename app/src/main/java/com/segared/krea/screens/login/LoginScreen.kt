@@ -83,10 +83,16 @@ fun LoginScreen(
                         password = password.value.trim(),
                         onError = {
                             Toast.makeText(
-                                context, context.getString(R.string.login_fail), Toast.LENGTH_LONG).show()
+                                context, context.getString(R.string.login_fail), Toast.LENGTH_LONG
+                            ).show()
                         },
                         onSuccess = {
                             navController.navigate(KreaScreens.Dashboard.route)
+                        },
+                        unValidate = {
+                            Toast.makeText(
+                                context, "Usuario aun no validado", Toast.LENGTH_LONG
+                            ).show()
                         })
                 }
                 ButtonTransparent(

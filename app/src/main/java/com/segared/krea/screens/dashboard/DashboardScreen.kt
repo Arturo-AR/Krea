@@ -31,12 +31,12 @@ fun DashboardScreen(navController: NavController) {
             message = "Estas seguro de cerrar sesion ?",
             openDialog = openDialog
         ) {
-            prefs.deleteId()
+            prefs.deleteShared()
             navController.navigate(KreaScreens.Main.route)
         }
     }
     Box(modifier = Modifier.fillMaxSize()) {
-        ImageBackground(imageId = R.drawable.tower_day_2)
+        //ImageBackground(imageId = R.drawable.tower_day_2)
         Column(modifier = Modifier.padding(8.dp)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -54,13 +54,23 @@ fun DashboardScreen(navController: NavController) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+
+
                 Button(
-                    onClick = { navController.navigate(KreaScreens.AccessControl.route) },
+                    onClick = {
+                        if (prefs.getRol() == 1)
+                            navController.navigate(KreaScreens.AccountsRequest.route)
+                        else
+                            navController.navigate(KreaScreens.AccessControl.route)
+                    },
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = Color.Red
                     )
                 ) {
-                    Text(text = "Control de acceso", color = Color.White)
+                    Text(
+                        text = if (prefs.getRol() == 1) "Solicitudes" else "Control de acceso",
+                        color = Color.White
+                    )
                 }
             }
         }

@@ -145,7 +145,8 @@ fun SingUpScreen(
                             Toast.makeText(context, "Error al registar", Toast.LENGTH_SHORT).show()
                         },
                         onSuccess = {
-                            navController.navigate(KreaScreens.Dashboard.route)
+                            Toast.makeText(context, "Su solicitud esta siendo procesada", Toast.LENGTH_LONG).show()
+                            navController.navigate(KreaScreens.Main.route)
                         })
 
                 }

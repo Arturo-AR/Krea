@@ -13,13 +13,18 @@ import javax.inject.Inject
 class LoginScreenViewModel @Inject constructor(private val repository: KreaRepository) :
     ViewModel() {
 
-    fun login(email: String, password: String, onSuccess: () -> Unit, onError: () -> Unit) {
+    fun login(email: String, password: String, onSuccess: () -> Unit, onError: () -> Unit, unValidate: () -> Unit) {
         viewModelScope.launch {
             try {
                 val response = repository.login(email, password).body()
                 if (response?.responseCode == "exito") {
-                    prefs.saveId(response.responseObject?.userId!!)
-                    onSuccess()
+                    if (response.responseMessage == "Aun no verificada"){
+                        unValidate()
+                    }else{
+                        prefs.saveId(response.responseObject?.userId!!)
+                        prefs.saveRol(response.responseObject.rol)
+                        onSuccess()
+                    }
                 } else {
                     onError()
                 }

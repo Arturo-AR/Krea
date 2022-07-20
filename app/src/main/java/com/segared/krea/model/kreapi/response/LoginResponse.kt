@@ -14,4 +14,5 @@ data class LoginObject(
     @SerializedName("id_usuario") val userId: Int,
     @SerializedName("nombreUsuario") val userName: String,
     @SerializedName("apellidoUsuario") val userLastName: String,
+    @SerializedName("rol") val rol: Int,
 )
